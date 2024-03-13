@@ -1,6 +1,40 @@
+async function calcCurrency(value, fromCurrency, toCurrency) {
+    try {
+        const response = await fetch(`https://open.er-api.com/v6/latest/${fromCurrency}`);
+        const data = await response.json();
+        
+        const conversionRate = data.rates[toCurrency];
+        if (!conversionRate) {
+            alert('Exchange rate error');
+            return null;
+        }
+        
+        const result = parseFloat(value) * conversionRate;
+        return result.toFixed(2) + ' ' + toCurrency;
+    } catch (error) {
+        console.error('Failed to get current rates:', error);
+        alert('Please try again later.');
+        return null;
+    }
+}
+
+async function convertCurrency() {
+    var inputValue = document.getElementById('valueInputCurrency').value;
+    var fromCurrency = document.getElementById('currency-from-selection').value;
+    var toCurrency = document.getElementById('currency-to-selection').value;
+    
+    const result = await calcCurrency(inputValue, fromCurrency, toCurrency);
+    
+    if (result !== null) {
+        document.getElementById('resultLabelCurrency').innerText = result;
+        document.getElementById('resultCardCurrency').style.display = 'block';
+    }
+}
+
 function openConverter(type) {
     document.getElementById('metric').style.display = type === 'metric' ? 'block' : 'none';
     document.getElementById('imperial').style.display = type === 'imperial' ? 'block' : 'none';
+    document.getElementById('currency').style.display = type === 'currency' ? 'block' : 'none';
 }
 
 function convertMetric() {
@@ -141,4 +175,4 @@ function calcImperial(value, conversionType) {
         default:
             return 'Invalid conversion type';
     }
-}
+}  
