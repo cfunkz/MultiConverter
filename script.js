@@ -39,6 +39,9 @@ function calcMetric(value, conversionType) {
         case 'cl-fl':
             result = parseFloat(value) * 0.33814;
             return (value + " Centiliters" + "\n=\n" + result.toFixed(2) + " Fluid Ounces");
+        case 'l-fl':
+            result = parseFloat(value) * 33.814;
+            return (value + " Liters" + "\n=\n" + result.toFixed(2) + " Fluid Ounces");
         case 'l-gal':
             result = parseFloat(value) * 0.264172;
             return (value + " Liters" + "\n=\n" + result.toFixed(2) + " Gallons");
@@ -66,6 +69,19 @@ function calcMetric(value, conversionType) {
         case 'm-yd':
             result = parseFloat(value) * 1.09361;
             return (value + " Meters" + "\n=\n" + result.toFixed(2) + " Yards");
+        case 'kph-mph':
+            var result = parseFloat(value) / 1.60934;
+            return (value + " KPH" + "\n=\n" + result.toFixed(2) + " MPH");
+        case 'm2-ft2':
+            result = parseFloat(value) * 10.7639;
+            return (value + " Square Meters" + "\n=\n" + result.toFixed(2) + " Square Feet");
+        case 'c-f':
+            result = (parseFloat(value) * 9/5) + 32;
+            return (value + " Celsius" + "\n=\n" + result.toFixed(2) + " Fahrenheit");
+        case 'hectares-acres':
+            result = parseFloat(value) / 0.404686;
+            return (value + " Hectares" + "\n=\n" + result.toFixed(2) + " Acres");
+            
         default:
             return 'Invalid conversion type';
     }
@@ -89,6 +105,9 @@ function calcImperial(value, conversionType) {
         case 'fl-ml':
             result = parseFloat(value) * 29.5735;
             return (value + " Fluid Ounces" + "\n=\n" + result.toFixed(2) + " Milliliters");
+        case 'fl-l':
+            result = parseFloat(value) / 33.814; 
+            return (value + " Fluid Ounces" + "\n=\n" + result.toFixed(2) + " Liters");            
         case 'gal-l':
             result = parseFloat(value) * 3.78541;
             return (value + " Gallons" + "\n=\n" + result.toFixed(2) + " Liters");
@@ -107,8 +126,19 @@ function calcImperial(value, conversionType) {
         case 'yd-m':
             var result = parseFloat(value) / 1.09361;
             return (value + " Yards" + "\n=\n" + result.toFixed(2) + " Meters");
-            
+        case 'mph-kph':
+            var result = parseFloat(value) * 1.60934;
+            return (value + " MPH" + "\n=\n" + result.toFixed(2) + " KPH");
+        case 'ft2-m2':
+            result = parseFloat(value) / 10.7639; 
+            return (value + " Square Feet" + "\n=\n" + result.toFixed(2) + " Square Meters");
+        case 'f-c':
+            result = (parseFloat(value) - 32) * 5/9; 
+            return (value + " Fahrenheit" + "\n=\n" + result.toFixed(2) + " Celsius");
+        case 'acres-hectares':
+            result = parseFloat(value) * 0.404686;
+            return (value + " Acres" + "\n=\n" + result.toFixed(2) + " Hectares");     
         default:
             return 'Invalid conversion type';
     }
-}  
+}
