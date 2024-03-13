@@ -29,7 +29,7 @@ function calcMetric(value, conversionType) {
             return (value + " Centimeters" + "\n=\n" + result.toFixed(2) +  " Inches");
         case 'm-ft':
             result = parseFloat(value) * 3.28084;
-            return (value + " Milimeters" + "\n=\n" + result.toFixed(2) + " Feet");
+            return (value + " Meters" + "\n=\n" + result.toFixed(2) + " Feet");
         case 'km-mi':
             result = parseFloat(value) * 0.621371;
             return (value + " Kilometers" + "\n=\n" + result.toFixed(2) + " Miles");
