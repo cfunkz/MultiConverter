@@ -81,6 +81,9 @@ function calcMetric(value, conversionType) {
         case 'l-gal':
             result = parseFloat(value) * 0.264172;
             return (value + " Liters" + "\n=\n" + result.toFixed(2) + " Gallons");
+        case 'kpl-mpg':
+            result = parseFloat(value) * 2.35215;
+            return (value + " Kilometers Per Liter" + "\n=\n" + result.toFixed(2) + " Miles Per Gallon");
         case 'kl-gal':
             result = parseFloat(value) * 264.172;
             return (value + " Kiloliters" + "\n=\n" + result.toFixed(2) + " Gallons");
@@ -143,7 +146,10 @@ function calcImperial(value, conversionType) {
             return (value + " Fluid Ounces" + "\n=\n" + result.toFixed(2) + " Milliliters");
         case 'fl-l':
             result = parseFloat(value) / 33.814; 
-            return (value + " Fluid Ounces" + "\n=\n" + result.toFixed(2) + " Liters");            
+            return (value + " Fluid Ounces" + "\n=\n" + result.toFixed(2) + " Liters");    
+        case 'mpg-kpl':
+            result = parseFloat(value) / 2.35215;
+            return (value + " Miles Per Gallon" + "\n=\n" + result.toFixed(2) + " Kilometers Per Liter");        
         case 'gal-l':
             result = parseFloat(value) * 3.78541;
             return (value + " Gallons" + "\n=\n" + result.toFixed(2) + " Liters");
