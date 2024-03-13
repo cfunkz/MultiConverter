@@ -48,7 +48,7 @@
             <option value="ml-fl">Milliliters (mL) to Fluid Ounces (fl oz)</option>
             <option value="cl-fl">Centiliters (cl) to Fluid Ounces (fl oz)</option>
             <option value="l-fl">Liters (L) to Fluid Ounces (fl oz)</option>
-            <option value="l-gal">Liters (L) to Gallons (gal)</option> 
+            <option value="l-gal">Liters (L) to Gallons (gal)</option>
             <option value="kl-gal">Kiloliters (KL) to Gallons (gal)</option>
             <option value="mg-oz">Milligrams (mg) to Ounces (oz)</option>
             <option value="g-oz">Grams (g) to Ounces (oz)</option>
@@ -113,7 +113,7 @@
 
   <!-- CURRENCY -->
   <div class="container mt-5" id="currency" style="display:none;">
-    <h1 class="mb-4 text-center text-primary">Currency Converter</h1>
+    <h1 class="mb-4 text-center text-warning">Currency Converter</h1>
   
     <h3 class="mb-4 text-center">Select Currencies</h3>
     <div class="row">
@@ -161,9 +161,8 @@
             <option value="RUB">RUB (Russian Ruble)</option>
             <option value="ZAR">ZAR (South African Rand)</option>
         </select>
-  
         <input type="number" class="form-control mb-3" id="valueInputCurrency" placeholder="Enter value" value="0">
-        <button class="btn btn-primary d-block mx-auto mb-3" onclick="convertCurrency()">Convert</button>
+        <button class="btn btn-warning d-block text-white mx-auto mb-3" onclick="convertCurrency()">Convert</button>
         <div class="card" id="resultCardCurrency" style="display:none;">
           <div class="card-body bg-primary text-white text-center">
             <h5 class="card-title">Result</h5>
