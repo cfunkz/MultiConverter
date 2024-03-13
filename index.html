@@ -34,13 +34,17 @@
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <select class="form-select mb-3" id="metric-selection" onchange="switchMetric()">
+            <option value="m2-ft2">Square Meter (m2) to Square Feet (ft2)</option>
             <option value="mm-in">Millimeters (MM) to Inches (in)</option>
             <option value="cm-in">Centimeters (CM) to Inches (in)</option>
             <option value="m-ft">Meters (M) to Feet (ft)</option>
+            <option value="m-yd">Meters (M) to Yards (yd)</option>
             <option value="km-mi">Kilometers (KM) to Miles (mi)</option>
+            <option value="hectares-acres">Hectares to Acres</option>
+            <option value="kph-mph">Kilometers Per Hour (KPH) to Miles Per Hour (MPH)</option>
             <option value="ml-fl">Milliliters (mL) to Fluid Ounces (fl oz)</option>
             <option value="cl-fl">Centiliters (cl) to Fluid Ounces (fl oz)</option>
-            <option value="m-yd">Meters (M) to Yards (yd)</option>
+            <option value="l-fl">Liters (L) to Fluid Ounces (fl oz)</option>
             <option value="l-gal">Liters (L) to Gallons (gal)</option>
             <option value="kl-gal">Kiloliters (KL) to Gallons (gal)</option>
             <option value="mg-oz">Milligrams (mg) to Ounces (oz)</option>
@@ -49,6 +53,7 @@
             <option value="kg-lb">Kilograms (kg) to Pounds (lbs)</option>
             <option value="ton-lb">Metric Tons (ton) to Pounds (lbs)</option>
             <option value="ton-st">Metric Tons (ton) to Stone (st)</option>
+            <option value="c-f">Celsius (C) to Farenheit (F)</option>
         </select>
 
         <input type="number" class="form-control mb-3" id="valueInputMetric" placeholder="Enter value" value="0">
@@ -72,17 +77,22 @@
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <select class="form-select mb-3" id="imperial-selection" onchange="switchImperial()">
+            <option value="ft2-m2">Square Feet (ft2) to Square Meter (m2)</option>
             <option value="in-mm">Inches (in) to Millimeters (mm)</option>
             <option value="in-cm">Inches (in) to Centimeters (cm)</option>
             <option value="ft-m">Feet (ft) to Meters (m)</option>
             <option value="yd-m">Yards (yd) to Meters (m)</option>
             <option value="mi-km">Miles (mi) to Kilometers (km)</option>
+            <option value="acres-hectares">Acres to Hectares</option>
+            <option value="mph-kph">Miles Per Hour (MPH) to Kilometers Per Hour (KPH)</option>
             <option value="fl-ml">Fluid Ounces (fl oz) to Milliliters (mL)</option>
+            <option value="fl-l">Fluid Ounces (fl oz) to Liters (L)</option>
             <option value="gal-l">Gallons (gal) to Liters (L)</option>
             <option value="oz-mg">Ounces (oz) to Milligrams (mg)</option>
             <option value="lb-g">Pounds (lbs) to Grams (g)</option>
             <option value="st-kg">Stone (st) to Kilograms (kg)</option>
             <option value="st-ton">Stone (st) to Metric Tons</option>
+            <option value="f-c">Farenheit (F) to Celsius (C)</option>
         </select>
 
         <input type="number" class="form-control mb-3" id="valueInputImperial" placeholder="Enter value" value="0">
