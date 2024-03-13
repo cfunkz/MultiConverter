@@ -1,6 +1,6 @@
 async function calcCurrency(value, fromCurrency, toCurrency) {
     try {
-        const response = await fetch(`https://open.er-api.com/v6/latest/${fromCurrency}`);
+        const response = await fetch(`http://open.er-api.com/v6/latest/${fromCurrency}`);
         const data = await response.json();
         
         const conversionRate = data.rates[toCurrency];
@@ -35,6 +35,8 @@ function openConverter(type) {
     document.getElementById('metric').style.display = type === 'metric' ? 'block' : 'none';
     document.getElementById('imperial').style.display = type === 'imperial' ? 'block' : 'none';
     document.getElementById('currency').style.display = type === 'currency' ? 'block' : 'none';
+    document.getElementById('decimal-to-binary').style.display = type === 'decimal-to-binary' ? 'block' : 'none';
+    document.getElementById('binary-to-decimal').style.display = type === 'binary-to-decimal' ? 'block' : 'none';
 }
 
 function convertMetric() {
@@ -175,4 +177,32 @@ function calcImperial(value, conversionType) {
         default:
             return 'Invalid conversion type';
     }
-} 
+}
+
+// Decimal to Binary
+function decimalToBinary(decimal) {
+    return (decimal >>> 0).toString(2);
+}
+
+// Binary to Decimal
+function binaryToDecimal(binary) {
+    return parseInt(binary, 2);
+}
+
+// Convert Decimal to Binary
+function convertDecimalToBinary() {
+    var decimalInput = document.getElementById('decimalInput').value;
+    var binaryResult = decimalToBinary(decimalInput);
+    
+    document.getElementById('resultLabelDecimalToBinary').innerText = binaryResult;
+    document.getElementById('resultCardDecimalToBinary').style.display = 'block';
+}
+  
+  // Convert Binary to Decimal
+function convertBinaryToDecimal() {
+    var binaryInput = document.getElementById('binaryInput').value;
+    var decimalResult = binaryToDecimal(binaryInput);
+    
+    document.getElementById('resultLabelBinaryToDecimal').innerText = decimalResult;
+    document.getElementById('resultCardBinaryToDecimal').style.display = 'block';
+}
