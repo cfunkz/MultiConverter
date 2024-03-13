@@ -175,4 +175,4 @@ function calcImperial(value, conversionType) {
         default:
             return 'Invalid conversion type';
     }
-}  
+} 
