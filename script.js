@@ -101,9 +101,9 @@ function calcImperial(value, conversionType) {
         case 'st-kg':
             result = parseFloat(value) * 6.35029;
             return (value + " Stones" + "\n=\n" + result.toFixed(2) + " Kilograms");
-        case 'ton-kg':
-            result = parseFloat(value) * 907.185;
-            return (value + " Tons" + "\n=\n" + result.toFixed(2) + " Kilograms");
+        case 'st-ton':
+            var result = parseFloat(value) / 142.857;
+            return (value + " Stone" + "\n=\n" + result.toFixed(2) + " Tons");
         case 'yd-m':
             var result = parseFloat(value) / 1.09361;
             return (value + " Yards" + "\n=\n" + result.toFixed(2) + " Meters");
