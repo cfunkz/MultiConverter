@@ -63,6 +63,9 @@ function calcMetric(value, conversionType) {
         case 'ton-st':
             result = parseFloat(value) * 157.473;
             return (value + " Tonnes" + "\n=\n" + result.toFixed(2) + " Pounds");
+        case 'm-yd':
+            result = parseFloat(value) * 1.09361;
+            return (value + " Meters" + "\n=\n" + result.toFixed(2) + " Yards");
         default:
             return 'Invalid conversion type';
     }
@@ -101,6 +104,10 @@ function calcImperial(value, conversionType) {
         case 'ton-kg':
             result = parseFloat(value) * 907.185;
             return (value + " Tons" + "\n=\n" + result.toFixed(2) + " Kilograms");
+        case 'yd-m':
+            var result = parseFloat(value) / 1.09361;
+            return (value + " Yards" + "\n=\n" + result.toFixed(2) + " Meters");
+            
         default:
             return 'Invalid conversion type';
     }
