@@ -62,7 +62,7 @@ function calcMetric(value, conversionType) {
             return (value + " Tonnes" + "\n=\n" + result.toFixed(2) + " Pounds");
         case 'ton-st':
             result = parseFloat(value) * 157.473;
-            return (value + " Tonnes" + "\n=\n" + result.toFixed(2) + " Pounds");
+            return (value + " Tonnes" + "\n=\n" + result.toFixed(2) + " Stone");
         case 'm-yd':
             result = parseFloat(value) * 1.09361;
             return (value + " Meters" + "\n=\n" + result.toFixed(2) + " Yards");
