@@ -143,7 +143,7 @@ function calcMetric(value, conversionType) {
             result = parseFloat(value) / 1000;
             return (value + " Milliliters" + "\n=\n" + result.toFixed(2) + " Liters");
         case 'cl-l':
-            result = parseFloat(value) / 10;
+            result = parseFloat(value) / 100;
             return (value + " Centiliters" + "\n=\n" + result.toFixed(2) + " Liters");
         case 'kl-l':
             result = parseFloat(value) * 1000;
