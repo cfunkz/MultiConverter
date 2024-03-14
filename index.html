@@ -41,6 +41,9 @@
           <li class="nav-item">
             <a class="nav-link" href="javascript:void(0);" onclick="openConverter('emojis')">Emojis</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);" onclick="openConverter('password-gen')">Password Gen</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -59,7 +62,7 @@
                 <option value="m2-ft2">Square Meter (m2) to Square Feet (ft2)</option>
             </optgroup>
             <optgroup label="Length">
-                <option value="km-mi">Kilometers (KM) to Miles (mi)</option>
+                <option value="km-mi">Kilometers <label class="fw-bold">(KM)</label> to Miles (mi)</option>
                 <option value="km-m">Kilometers (KM) to Meters (M)</option>
                 <option value="m-ft">Meters (M) to Feet (ft)</option>
                 <option value="m-yd">Meters (M) to Yards (yd)</option>
@@ -353,12 +356,44 @@
     </div>
   </div>
 
+  <!-- EMOJIS -->
   <div class="container mt-5" id="emojis" style="display:none;">
     <h1 class="mb-4 text-center">Emoji List</h1>
     <input type="text" id="searchInput" class="form-control mb-4" placeholder="Search emojis by name...">
     <div id="emojiContainer" class="row row-cols-1 row-cols-md-4 g-4">
       <!-- Emojis here -->
     </div>
+  </div>
+
+  <!-- password gen -->
+  <div class="container mt-5" id="password-gen" style="display:none;">
+    <h1 class="mb-4">Password Generator</h1>
+    <div class="mb-3">
+      <label for="lengthInput" class="form-label">Password Length</label>
+      <input type="number" id="lengthInput" class="form-control" max="256">
+    </div>
+    <div class="form-check form-switch mb-3">
+      <input class="form-check-input" type="checkbox" id="includeUppercase">
+      <label class="form-check-label" for="includeUppercase">Include Uppercase Letters</label>
+    </div>
+    <div class="form-check form-switch mb-3">
+      <input class="form-check-input" type="checkbox" id="includeLowercase">
+      <label class="form-check-label" for="includeLowercase">Include Lowercase Letters</label>
+    </div>
+    <div class="form-check form-switch mb-3">
+      <input class="form-check-input" type="checkbox" id="includeNumbers">
+      <label class="form-check-label" for="includeNumbers">Include Numbers</label>
+    </div>
+    <div class="form-check form-switch mb-3">
+      <input class="form-check-input" type="checkbox" id="includeSymbols">
+      <label class="form-check-label" for="includeSymbols">Include Symbols</label>
+    </div>
+    <div class="form-check form-switch mb-3">
+      <input class="form-check-input" type="checkbox" id="excludeAmbiguous">
+      <label class="form-check-label" for="excludeAmbiguous">Exclude Characters (e.g., 'l', '1', 'O', '0')</label>
+    </div>
+    <button id="generateButton" class="btn btn-primary">Generate Password</button>
+    <div id="passwordDisplay" class="mt-3 text-center bg-light p-3 rounded"></div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
