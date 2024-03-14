@@ -1,0 +1,39 @@
+.generated-qr {
+    width: 256px;
+    height: 256px;
+    padding: 10px;
+    margin: 10px;
+    transition: filter 0.3s;
+    position: relative;
+    cursor: pointer;
+}
+
+.generated-qr:hover {
+    filter: brightness(80%);
+}
+
+.generated-qr::after {
+    content: "Download";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.generated-qr:hover::after {
+    opacity: 1;
+}
+
+.qr-text {
+      text-align: center;
+      margin-top: 5px;
+      width: 100%; /* Limiting width to prevent overflow */
+      overflow: hidden; /* Hide overflow text */
+      white-space: nowrap; /* Prevent wrapping */
+      text-overflow: ellipsis; /* Display ellipsis for overflow text */
+}
