@@ -42,6 +42,7 @@ function openConverter(type) {
     document.getElementById('color-pal').style.display = type === 'color-pal' ? 'block' : 'none';
     document.getElementById('emojis').style.display = type === 'emojis' ? 'block' : 'none';
     document.getElementById('password-gen').style.display = type === 'password-gen' ? 'block' : 'none';
+    document.getElementById('gamertag').style.display = type === 'gamertag' ? 'block' : 'none';
 }
 
 function convertMetric() {
@@ -376,4 +377,12 @@ document.getElementById("lengthInput").addEventListener("input", function() {
     if (parseInt(this.value) > 256) {
       this.value = 256;
     }
-  });
+});
+document.getElementById("genButton").addEventListener("click", function() {
+    fetch("https://api.codetabs.com/v1/proxy?quest=https://api.namefake.com/")
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("nameDisplay").textContent = data.username;
+      })
+      .catch(error => console.error('Error fetching name:', error));
+});
