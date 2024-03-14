@@ -1,310 +1,295 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atlas | Web Converter</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="/Web-Value-Converter">Converter</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"> <!-- JAVASCRIPT:VOID(0) TO HIDE # AS HREF -->
-            <a class="nav-link" href="javascript:void(0);" onclick="openConverter('metric')">Metric</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);" onclick="openConverter('imperial')">Imperial</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);" onclick="openConverter('currency')">Currency</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);" onclick="openConverter('decimal-to-binary')">Binary</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);" onclick="openConverter('youtube')">Youtube</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- METRIC CONVERSION MENU -->
-  <div class="container mt-5" id="metric">
-    <h1 class="mb-4 text-center text-success">Metric to Imperial Converter</h1>
-
-    <h3 class="mb-4 text-center">Select A Value To Convert</h3>
-    <div class="row">
-      <div class="col">
-        <select class="form-select mb-3" id="metric-selection" onchange="switchMetric()">
-            <optgroup label="Area">
-                <option value="hectares-acres">Hectares to Acres</option>
-                <option value="m2-ft2">Square Meter (m2) to Square Feet (ft2)</option>
-            </optgroup>
-            <optgroup label="Length">
-                <option value="km-mi">Kilometers (KM) to Miles (mi)</option>
-                <option value="km-m">Kilometers (KM) to Meters (M)</option>
-                <option value="m-ft">Meters (M) to Feet (ft)</option>
-                <option value="m-yd">Meters (M) to Yards (yd)</option>
-                <option value="m-km">Meters (M) to Kilometers (KM)</option>
-                <option value="m-cm">Meters (M) to Centimeters (CM)</option>
-                <option value="m-mm">Meters (M) to Millimeters (MM)</option>
-                <option value="cm-mm">Centimeters (CM) to Millimeters (MM)</option>
-                <option value="cm-in">Centimeters (CM) to Inches (in)</option>
-                <option value="mm-in">Millimeters (MM) to Inches (in)</option>
-                <option value="mm-cm">Millimeters (MM) to Centimeters (CM)</option>
-            </optgroup>
-            <optgroup label="Speed">
-                <option value="kph-mph">Kilometers Per Hour (KPH) to Miles Per Hour (MPH)</option>
-                <option value="kpl-mpg">Kilometers Per Liter (KPL) to Miles Per Gallon (MPG)</option>
-            </optgroup>
-            <optgroup label="Temperature">
-                <option value="c-f">Celsius (C) to Farenheit (F)</option>
-            </optgroup>
-            <optgroup label="Volume">
-                <option value="cl-fl">Centiliters (cL) to Fluid Ounces (fl oz.)</option>
-                <option value="kl-gal">Kiloliters (KL) to Gallons (gal)</option>
-                <option value="l-fl">Liters (L) to Fluid Ounces (fl oz.)</option>
-                <option value="l-gal">Liters (L) to Gallons (gal)</option>
-                <option value="ml-fl">Milliliters (mL) to Fluid Ounces (fl oz.)</option>
-                <option value="ml-l">Milliliters (mL) to Liters (L)</option>
-                <option value="cl-l">Centiliters (cl) to Liters (L)</option>
-                <option value="kl-l">Kiloliters (KL) to Liters (L)</option>
-                <option value="kl-ml">Kiloliters (KL) to Milliliters (mL)</option>
-                <option value="l-ml">Liter (L) to Milliliters (mL)</option>
-                <option value="l-cl">Liter (L) to Centiliters (cL)</option>
-                <option value="l-kl">Liter (L) to Kiloliters (KL)</option>
-            </optgroup>
-            <optgroup label="Weight">
-                <option value="g-oz">Grams (G) to Ounces (oz)</option>
-                <option value="kg-lb">Kilograms (KG) to Pounds (lbs)</option>
-                <option value="kg-st">Kilograms (KG) to Stone (st)</option>
-                <option value="mg-oz">Milligrams (MG) to Ounces (oz)</option>
-                <option value="ton-lb">Metric Tons (TON) to Pounds (lbs)</option>
-                <option value="ton-st">Metric Tons (TON) to Stone (st)</option>
-                <option value="g-kg">Grams (G) to Kilograms (KG)</option>
-                <option value="mg-g">Milligrams (MG) to Grams (G)</option>
-                <option value="mg-kg">Milligrams (MG) to Kilograms (KG)</option>
-                <option value="kg-g">Kilograms (KG) to Grams (G)</option>
-                <option value="g-mg">Grams (G) to Milligrams (MG)</option>
-                <option value="kg-mg">Kilograms (KG) to Milligrams (MG)</option>
-            </optgroup>
-        </select>
+async function calcCurrency(value, fromCurrency, toCurrency) {
+    try {
+        const response = await fetch(`https://open.er-api.com/v6/latest/${fromCurrency}`);
+        const data = await response.json();
         
+        const conversionRate = data.rates[toCurrency];
+        if (!conversionRate) {
+            alert('Exchange rate error');
+            return null;
+        }
+        
+        const result = parseFloat(value) * conversionRate;
+        return result.toFixed(2) + ' ' + toCurrency;
+    } catch (error) {
+        console.error('Failed to get current rates:', error);
+        alert('Please try again later.');
+        return null;
+    }
+}
 
-        <input type="number" class="form-control mb-3" id="valueInputMetric" placeholder="Enter value" value="0">
-        <button class="btn btn-success d-block mx-auto mb-3" onclick="convertMetric()">Convert</button>
-        <div class="card mt-4" id="resultCardMetric" style="display:none;">
-            <div class="card-body bg-success text-white text-center">
-                <h5 class="card-title">Result</h5>
-                <hr>
-                <p class="card-text display-4" id="resultLabelMetric"></p>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
+async function convertCurrency() {
+    var inputValue = document.getElementById('valueInputCurrency').value;
+    var fromCurrency = document.getElementById('currency-from-selection').value;
+    var toCurrency = document.getElementById('currency-to-selection').value;
+    
+    const result = await calcCurrency(inputValue, fromCurrency, toCurrency);
+    
+    if (result !== null) {
+        document.getElementById('resultLabelCurrency').innerText = result;
+        document.getElementById('resultCardCurrency').style.display = 'block';
+    }
+}
 
-  <!-- IMPERIAL CONVERSION MENU -->
-  <div class="container mt-5" id="imperial" style="display:none;">
-    <h1 class="mb-4 text-center text-primary">Imperial to Metric Converter</h1>
+function openConverter(type) {
+    document.getElementById('metric').style.display = type === 'metric' ? 'block' : 'none';
+    document.getElementById('imperial').style.display = type === 'imperial' ? 'block' : 'none';
+    document.getElementById('currency').style.display = type === 'currency' ? 'block' : 'none';
+    document.getElementById('decimal-to-binary').style.display = type === 'decimal-to-binary' ? 'block' : 'none';
+    document.getElementById('binary-to-decimal').style.display = type === 'binary-to-decimal' ? 'block' : 'none';
+    document.getElementById('youtube').style.display = type === 'youtube' ? 'block' : 'none';
+}
 
-    <h3 class="mb-4 text-center">Select A Value To Convert</h3>
-    <div class="row">
-      <div class="col">
-        <select class="form-select mb-3" id="imperial-selection" onchange="switchImperial()">
-            <optgroup label="Area">
-                <option value="ft2-m2">Square Feet (ft2) to Square Meter (m2)</option>
-                <option value="acres-hectares">Acres to Hectares</option>
-            </optgroup>
-            <optgroup label="Length">
-                <option value="in-mm">Inches (in.) to Millimeters (MM)</option>
-                <option value="in-cm">Inches (in.) to Centimeters (CM)</option>
-                <option value="ft-m">Feet (ft.) to Meters (M)</option>
-                <option value="yd-m">Yards (yd) to Meters (M)</option>
-                <option value="mi-km">Miles (mi) to Kilometers (KM)</option>
-            </optgroup>
-            <optgroup label="Speed">
-                <option value="mph-kph">Miles Per Hour (MPH) to Kilometers Per Hour (KPH)</option>
-            </optgroup>
-            <optgroup label="Volume">
-                <option value="fl-ml">Fluid Ounces (fl oz.) to Milliliters (mL)</option>
-                <option value="fl-l">Fluid Ounces (fl oz.) to Liters (L)</option>
-                <option value="gal-l">Gallons (gal) to Liters (L)</option>
-            </optgroup>
-            <optgroup label="Weight">
-                <option value="oz-mg">Ounces (oz) to Milligrams (MG)</option>
-                <option value="oz-g">Ounces (oz) to Grams (G)</option>
-                <option value="lb-g">Pounds (lbs) to Grams (G)</option>
-                <option value="st-kg">Stone (st) to Kilograms (KG)</option>
-                <option value="st-ton">Stone (st) to Metric Tons (TON)</option>
-            </optgroup>
-            <optgroup label="Temperature">
-                <option value="f-c">Fahrenheit (F) to Celsius (C)</option>
-            </optgroup>
-        </select>        
+function convertMetric() {
+    var inputValue = document.getElementById('valueInputMetric').value;
+    var conversionType = document.getElementById('metric-selection').value;
+    var result = calcMetric(inputValue, conversionType);
+    document.getElementById('resultLabelMetric').innerText = result;
+    document.getElementById('resultCardMetric').style.display = 'block';
+}
+function convertImperial() {
+    var inputValue = document.getElementById('valueInputImperial').value;
+    var conversionType = document.getElementById('imperial-selection').value;
+    var result = calcImperial(inputValue, conversionType);
+    document.getElementById('resultLabelImperial').innerText = result;
+    document.getElementById('resultCardImperial').style.display = 'block';
+}
 
-        <input type="number" class="form-control mb-3" id="valueInputImperial" placeholder="Enter value" value="0">
-        <button class="btn btn-primary mx-auto mb-3" onclick="convertImperial()">Convert</button>
-        <div class="card" id="resultCardImperial" style="display:none;">
-            <div class="card-body bg-primary text-white text-center">
-                <h5 class="card-title">Result</h5>
-                <hr>
-                <p class="card-text display-4" id="resultLabelImperial"></p>
-            </div>
-        </div>
-        <div>
-          <p>Exchange rates provided by <a href="https://www.exchangerate-api.com">Exchange Rate API</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
+function calcMetric(value, conversionType) {
+    var result;
+    switch (conversionType) {
+        case 'mm-in':
+            result = parseFloat(value) * 0.0393701;
+            return (value + " Milimeters" + "\n=\n" + result.toFixed(2) + " Inches");
+        case 'cm-in':
+            result = parseFloat(value) * 0.393701;
+            return (value + " Centimeters" + "\n=\n" + result.toFixed(2) +  " Inches");
+        case 'm-ft':
+            result = parseFloat(value) * 3.28084;
+            return (value + " Meters" + "\n=\n" + result.toFixed(2) + " Feet");
+        case 'km-mi':
+            result = parseFloat(value) * 0.621371;
+            return (value + " Kilometers" + "\n=\n" + result.toFixed(2) + " Miles");
+        case 'ml-fl':
+            result = parseFloat(value) * 0.033814;
+            return (value + " Mililiters" + "\n=\n" + result.toFixed(2) + " Fluid Ounces");
+        case 'cl-fl':
+            result = parseFloat(value) * 0.33814;
+            return (value + " Centiliters" + "\n=\n" + result.toFixed(2) + " Fluid Ounces");
+        case 'l-fl':
+            result = parseFloat(value) * 33.814;
+            return (value + " Liters" + "\n=\n" + result.toFixed(2) + " Fluid Ounces");
+        case 'l-gal':
+            result = parseFloat(value) * 0.264172;
+            return (value + " Liters" + "\n=\n" + result.toFixed(2) + " Gallons");
+        case 'kpl-mpg':
+            result = parseFloat(value) * 2.35215;
+            return (value + " Kilometers Per Liter" + "\n=\n" + result.toFixed(2) + " Miles Per Gallon");
+        case 'kl-gal':
+            result = parseFloat(value) * 264.172;
+            return (value + " Kiloliters" + "\n=\n" + result.toFixed(2) + " Gallons");
+        case 'mg-oz':
+            result = parseFloat(value) * 0.000035274;
+            return (value + " Miligrams" + "\n=\n" + result.toFixed(2) + " Ounces");
+        case 'g-oz':
+            result = parseFloat(value) * 0.035274;
+            return (value + " Grams" + "\n=\n" + result.toFixed(2) + " Ounces");
+        case 'kg-st':
+            result = parseFloat(value) * 0.157473;
+            return (value + " Kilograms" + "\n=\n" + result.toFixed(2) + " Stone");
+        case 'kg-lb':
+            result = parseFloat(value) * 2.20462;
+            return (value + " Kilograms" + "\n=\n" + result.toFixed(2) + " Pounds");
+        case 'ton-lb':
+            result = parseFloat(value) * 2204.62;
+            return (value + " Tonnes" + "\n=\n" + result.toFixed(2) + " Pounds");
+        case 'ton-st':
+            result = parseFloat(value) * 157.473;
+            return (value + " Tonnes" + "\n=\n" + result.toFixed(2) + " Stone");
+        case 'm-yd':
+            result = parseFloat(value) * 1.09361;
+            return (value + " Meters" + "\n=\n" + result.toFixed(2) + " Yards");
+        case 'kph-mph':
+            var result = parseFloat(value) / 1.60934;
+            return (value + " KPH" + "\n=\n" + result.toFixed(2) + " MPH");
+        case 'm2-ft2':
+            result = parseFloat(value) * 10.7639;
+            return (value + " Square Meters" + "\n=\n" + result.toFixed(2) + " Square Feet");
+        case 'c-f':
+            result = (parseFloat(value) * 9/5) + 32;
+            return (value + " Celsius" + "\n=\n" + result.toFixed(2) + " Fahrenheit");
+        case 'hectares-acres':
+            result = parseFloat(value) / 0.404686;
+            return (value + " Hectares" + "\n=\n" + result.toFixed(2) + " Acres");
+        case 'g-kg':
+            result = parseFloat(value) / 1000;
+            return (value + " Grams" + "\n=\n" + result.toFixed(2) + " Kilograms");
+        case 'mg-g':
+            result = parseFloat(value) / 1000;
+            return (value + " Milligrams" + "\n=\n" + result.toFixed(2) + " Grams");
+        case 'mg-kg':
+            result = parseFloat(value) / 1000000;
+            return (value + " Milligrams" + "\n=\n" + result.toFixed(2) + " Kilograms");
+        case 'kg-g':
+            result = parseFloat(value) * 1000;
+            return (value + " Kilograms" + "\n=\n" + result.toFixed(2) + " Grams");
+        case 'g-mg':
+            result = parseFloat(value) * 1000;
+            return (value + " Grams" + "\n=\n" + result.toFixed(2) + " Milligrams");
+        case 'kg-mg':
+            result = parseFloat(value) * 1000000;
+            return (value + " Kilograms" + "\n=\n" + result.toFixed(2) + " Milligrams");
+        case 'ml-l':
+            result = parseFloat(value) / 1000;
+            return (value + " Milliliters" + "\n=\n" + result.toFixed(2) + " Liters");
+        case 'cl-l':
+            result = parseFloat(value) / 100;
+            return (value + " Centiliters" + "\n=\n" + result.toFixed(2) + " Liters");
+        case 'kl-l':
+            result = parseFloat(value) * 1000;
+            return (value + " Kiloliters" + "\n=\n" + result.toFixed(2) + " Liters");
+        case 'kl-ml':
+            result = parseFloat(value) * 1000000;
+            return (value + " Kiloliters" + "\n=\n" + result.toFixed(2) + " Milliliters");
+        case 'l-ml':
+            result = parseFloat(value) * 1000;
+            return (value + " Liters" + "\n=\n" + result.toFixed(2) + " Milliliters");
+        case 'l-cl':
+            result = parseFloat(value) * 100;
+            return (value + " Liters" + "\n=\n" + result.toFixed(2) + " Centiliters");
+        case 'l-kl':
+            result = parseFloat(value) / 1000;
+            return (value + " Liters" + "\n=\n" + result.toFixed(2) + " Kiloliters");
+       case 'mm-cm':
+            result = parseFloat(value) / 10;
+            return (value + " Millimeters" + "\n=\n" + result.toFixed(2) + " Centimeters");
+        case 'cm-mm':
+            result = parseFloat(value) * 10;
+            return (value + " Centimeters" + "\n=\n" + result.toFixed(2) + " Millimeters");
+        case 'km-m':
+            result = parseFloat(value) * 1000;
+            return (value + " Kilometers" + "\n=\n" + result.toFixed(2) + " Meters");
+        case 'm-km':
+            result = parseFloat(value) / 1000;
+            return (value + " Meters" + "\n=\n" + result.toFixed(2) + " Kilometers");
+        case 'm-cm':
+            result = parseFloat(value) * 100; // 1 meter = 100 centimeters
+            return (value + " Meters" + "\n=\n" + result.toFixed(2) + " Centimeters");
+        case 'm-mm':
+            result = parseFloat(value) * 1000; // 1 meter = 1000 millimeters
+            return (value + " Meters" + "\n=\n" + result.toFixed(2) + " Millimeters");
 
-  <!-- CURRENCY -->
-  <div class="container mt-5" id="currency" style="display:none;">
-    <h1 class="mb-4 text-center text-warning">Currency Converter</h1>
+        default:
+            return 'Invalid conversion type';
+    }
+}
+
+function calcImperial(value, conversionType) {
+    var result;
+    switch (conversionType) {
+        case 'in-mm':
+            result = parseFloat(value) * 25.4;
+            return (value + " Inches" + "\n=\n" + result.toFixed(2) + " Millimeters");
+        case 'in-cm':
+            result = parseFloat(value) * 2.54;
+            return (value + " Inches" + "\n=\n" + result.toFixed(2) + " Centimeters");
+        case 'ft-m':
+            result = parseFloat(value) * 0.3048;
+            return (value + " Feet" + "\n=\n" + result.toFixed(2) + " Meters");
+        case 'mi-km':
+            result = parseFloat(value) * 1.60934;
+            return (value + " Miles" + "\n=\n" + result.toFixed(2) + " Kilometers");
+        case 'fl-ml':
+            result = parseFloat(value) * 29.5735;
+            return (value + " Fluid Ounces" + "\n=\n" + result.toFixed(2) + " Milliliters");
+        case 'fl-l':
+            result = parseFloat(value) / 33.814; 
+            return (value + " Fluid Ounces" + "\n=\n" + result.toFixed(2) + " Liters");    
+        case 'mpg-kpl':
+            result = parseFloat(value) / 2.35215;
+            return (value + " Miles Per Gallon" + "\n=\n" + result.toFixed(2) + " Kilometers Per Liter");        
+        case 'gal-l':
+            result = parseFloat(value) * 3.78541;
+            return (value + " Gallons" + "\n=\n" + result.toFixed(2) + " Liters");
+        case 'oz-mg':
+            result = parseFloat(value) * 28349.5;
+            return (value + " Ounces" + "\n=\n" + result.toFixed(2) + " Milligrams");
+        case 'oz-g':
+            result = parseFloat(value) * 28.3495;
+            return (value + " Ounces" + "\n=\n" + result.toFixed(2) + " Grams");
+        case 'lb-g':
+            result = parseFloat(value) * 453.592;
+            return (value + " Pounds" + "\n=\n" + result.toFixed(2) + " Grams");
+        case 'st-kg':
+            result = parseFloat(value) * 6.35029;
+            return (value + " Stones" + "\n=\n" + result.toFixed(2) + " Kilograms");
+        case 'st-ton':
+            var result = parseFloat(value) / 142.857;
+            return (value + " Stone" + "\n=\n" + result.toFixed(2) + " Tons");
+        case 'yd-m':
+            var result = parseFloat(value) / 1.09361;
+            return (value + " Yards" + "\n=\n" + result.toFixed(2) + " Meters");
+        case 'mph-kph':
+            var result = parseFloat(value) * 1.60934;
+            return (value + " MPH" + "\n=\n" + result.toFixed(2) + " KPH");
+        case 'ft2-m2':
+            result = parseFloat(value) / 10.7639; 
+            return (value + " Square Feet" + "\n=\n" + result.toFixed(2) + " Square Meters");
+        case 'f-c':
+            result = (parseFloat(value) - 32) * 5/9; 
+            return (value + " Fahrenheit" + "\n=\n" + result.toFixed(2) + " Celsius");
+        case 'acres-hectares':
+            result = parseFloat(value) * 0.404686;
+            return (value + " Acres" + "\n=\n" + result.toFixed(2) + " Hectares");     
+        default:
+            return 'Invalid conversion type';
+    }
+}
+
+// Decimal to Binary
+function decimalToBinary(decimal) {
+    return (decimal >>> 0).toString(2);
+}
+
+// Binary to Decimal
+function binaryToDecimal(binary) {
+    return parseInt(binary, 2);
+}
+
+// Convert Decimal to Binary
+function convertDecimalToBinary() {
+    var decimalInput = document.getElementById('decimalInput').value;
+    var binaryResult = decimalToBinary(decimalInput);
+    var binaryResult16Bits = binaryResult.length > 16 ? 'NaN' : binaryResult.padStart(16, '0');
+    var binaryResult8Bits = binaryResult.length > 8 ? 'NaN' : binaryResult.padStart(8, '0');
+
+    document.getElementById('resultLabelDecimalToBinary').innerText = binaryResult;
+    document.getElementById('resultLabelDecimalToBinary16Bits').innerText = binaryResult16Bits;
+    document.getElementById('resultLabelDecimalToBinary8Bits').innerText = binaryResult8Bits;
+    document.getElementById('resultCardDecimalToBinary').style.display = 'block';
+}
   
-    <h3 class="mb-4 text-center">Select Currencies</h3>
-    <div class="row">
-      <div class="col">
-        <select class="form-select mb-3" id="currency-from-selection">
-            <option value="USD">USD (United States Dollar)</option>
-            <option value="EUR">EUR (Euro)</option>
-            <option value="GBP">GBP (British Pound Sterling)</option>
-            <option value="JPY">JPY (Japanese Yen)</option>
-            <option value="AUD">AUD (Australian Dollar)</option>
-            <option value="CAD">CAD (Canadian Dollar)</option>
-            <option value="CHF">CHF (Swiss Franc)</option>
-            <option value="CNY">CNY (Chinese Yuan Renminbi)</option>
-            <option value="SEK">SEK (Swedish Krona)</option>
-            <option value="NZD">NZD (New Zealand Dollar)</option>
-            <option value="KRW">KRW (South Korean Won)</option>
-            <option value="SGD">SGD (Singapore Dollar)</option>
-            <option value="NOK">NOK (Norwegian Krone)</option>
-            <option value="MXN">MXN (Mexican Peso)</option>
-            <option value="INR">INR (Indian Rupee)</option>
-            <option value="BRL">BRL (Brazilian Real)</option>
-            <option value="RUB">RUB (Russian Ruble)</option>
-            <option value="ZAR">ZAR (South African Rand)</option>
-        </select>
-        <div class="text-center">
-            <label class="mb-3"><strong>TO</strong></label>
-        </div>
-        <select class="form-select mb-3" id="currency-to-selection">
-            <option value="USD">USD (United States Dollar)</option>
-            <option value="EUR">EUR (Euro)</option>
-            <option value="GBP">GBP (British Pound Sterling)</option>
-            <option value="JPY">JPY (Japanese Yen)</option>
-            <option value="AUD">AUD (Australian Dollar)</option>
-            <option value="CAD">CAD (Canadian Dollar)</option>
-            <option value="CHF">CHF (Swiss Franc)</option>
-            <option value="CNY">CNY (Chinese Yuan Renminbi)</option>
-            <option value="SEK">SEK (Swedish Krona)</option>
-            <option value="NZD">NZD (New Zealand Dollar)</option>
-            <option value="KRW">KRW (South Korean Won)</option>
-            <option value="SGD">SGD (Singapore Dollar)</option>
-            <option value="NOK">NOK (Norwegian Krone)</option>
-            <option value="MXN">MXN (Mexican Peso)</option>
-            <option value="INR">INR (Indian Rupee)</option>
-            <option value="BRL">BRL (Brazilian Real)</option>
-            <option value="RUB">RUB (Russian Ruble)</option>
-            <option value="ZAR">ZAR (South African Rand)</option>
-        </select>
-        <input type="number" class="form-control mb-3" id="valueInputCurrency" placeholder="Enter value" value="0">
-        <button class="btn btn-warning d-block text-white mx-auto mb-3" onclick="convertCurrency()">Convert</button>
-        <div class="card" id="resultCardCurrency" style="display:none;">
-          <div class="card-body bg-warning text-white text-center">
-            <h5 class="card-title">Result</h5>
-            <hr>
-            <p class="card-text display-4" id="resultLabelCurrency"></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- DECIMAL TO BINARY -->
-  <div class="container mt-5" id="decimal-to-binary" style="display:none;">
-    <h1 class="mb-4 text-center text-danger">Decimal to Binary Converter</h1>
-    <div class="text-center mb-3">
-        <button class="btn btn-danger" onclick="openConverter('binary-to-decimal')">⇄</button>
-    </div>
-    <h3 class="mb-4 text-center">Enter Decimal Number</h3>
-    <div class="row">
-      <div class="col">
-        <input type="number" class="form-control mb-3" id="decimalInput" placeholder="Enter decimal number">
-        <button class="btn btn-danger d-block mx-auto mb-3" onclick="convertDecimalToBinary()">Convert</button>
-        <div class="card" id="resultCardDecimalToBinary" style="display:none;">
-          <div class="card-body bg-danger text-white text-center">
-            <h5 class="card-title">Binary Representation</h5>
-            <hr>
-            <text>BINARY</text>
-            <p class="card-text display-4" id="resultLabelDecimalToBinary"></p>
-            <hr>
-            <text>16 BIT</text>
-            <p class="card-text display-4" id="resultLabelDecimalToBinary16Bits"></p>
-            <hr>
-            <text>8 BIT</text>
-            <p class="card-text display-4" id="resultLabelDecimalToBinary8Bits"></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- BINARY TO DECIMAL -->
-  <div class="container mt-5" id="binary-to-decimal" style="display:none;">
-    <h1 class="mb-4 text-center text-danger">Binary to Decimal Converter</h1>
-    <div class="text-center mb-3">
-        <button class="btn btn-danger" onclick="openConverter('decimal-to-binary')">⇄</button>
-    </div>
-    <h3 class="mb-4 text-center">Enter Binary Number</h3>
-    <div class="row">
-      <div class="col">
-        <input type="number" class="form-control mb-3" id="binaryInput" placeholder="Enter binary number">
-        <button class="btn btn-danger d-block mx-auto mb-3" onclick="convertBinaryToDecimal()">Convert</button>
-        <div class="card" id="resultCardBinaryToDecimal" style="display:none;">
-          <div class="card-body bg-danger text-white text-center">
-            <h5 class="card-title">Decimal Representation</h5>
-            <hr>
-            <p class="card-text display-4" id="resultLabelBinaryToDecimal"></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  // Convert Binary to Decimal
+function convertBinaryToDecimal() {
+    var binaryInput = document.getElementById('binaryInput').value;
+    var decimalResult = binaryToDecimal(binaryInput);
+    
+    document.getElementById('resultLabelBinaryToDecimal').innerText = decimalResult;
+    document.getElementById('resultCardBinaryToDecimal').style.display = 'block';
+}
 
-  <!-- YOUTUBE -->
-  <div class="container mt-5" id="youtube" style="display:none;">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <h2 class="text-center mb-4">YouTube Video Downloader</h2>
-        <div class="input-group mb-3">
-          <input type="text" id="videoUrl" class="form-control" placeholder="Enter YouTube video URL">
-          <div class="input-group-append">
-            <button class="btn btn-primary" type="button" onclick="downloadVideo()">Download</button>
-          </div>
-        </div>
-        <div class="text-center">
-          🎵 Powered by <a href="https://www.y2mate.com/">y2mate</a> 🎵
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/gif.js/dist/gif.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-<footer class="text-center mt-5">
-    <p>Written By <strong>cFunkz</strong>!</p>
-</footer>
-</html>
+function downloadVideo() {
+    var videoUrl = document.getElementById('videoUrl').value;
+    // Check if the URL is a valid YouTube URL
+    if (videoUrl.includes('youtube.com/watch') || videoUrl.includes('youtu.be')) {
+      // Extract the YouTube video ID
+      var videoId = videoUrl.split('v=')[1];
+      if (!videoId) {
+        videoId = videoUrl.split('youtu.be/')[1];
+      }
+      // Redirect the user to the correct site for downloading the video
+      window.open('https://www.y2mate.com/download-youtube/' + videoId, '_blank');
+    } else {
+      alert('Please enter a valid YouTube video URL.');
+    }
+}
