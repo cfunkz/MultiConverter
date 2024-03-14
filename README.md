@@ -1,1 +1,1 @@
-<img width="1280" alt="image" src="https://github.com/cfunkz/Web-Value-Converter/assets/116670695/7102f421-bb60-4a39-85a8-9cfb4e541bdf">
+<img width="887" alt="image" src="https://github.com/cfunkz/MultiConverter/assets/116670695/5629c1d4-bcfa-409d-b3c8-072835a71002">
