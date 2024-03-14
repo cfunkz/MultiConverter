@@ -259,8 +259,12 @@ function binaryToDecimal(binary) {
 function convertDecimalToBinary() {
     var decimalInput = document.getElementById('decimalInput').value;
     var binaryResult = decimalToBinary(decimalInput);
-    
+    var binaryResult16Bits = binaryResult.length > 16 ? 'NaN' : binaryResult.padStart(16, '0');
+    var binaryResult8Bits = binaryResult.length > 8 ? 'NaN' : binaryResult.padStart(8, '0');
+
     document.getElementById('resultLabelDecimalToBinary').innerText = binaryResult;
+    document.getElementById('resultLabelDecimalToBinary16Bits').innerText = binaryResult16Bits;
+    document.getElementById('resultLabelDecimalToBinary8Bits').innerText = binaryResult8Bits;
     document.getElementById('resultCardDecimalToBinary').style.display = 'block';
 }
   
