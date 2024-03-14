@@ -37,6 +37,7 @@ function openConverter(type) {
     document.getElementById('currency').style.display = type === 'currency' ? 'block' : 'none';
     document.getElementById('decimal-to-binary').style.display = type === 'decimal-to-binary' ? 'block' : 'none';
     document.getElementById('binary-to-decimal').style.display = type === 'binary-to-decimal' ? 'block' : 'none';
+    document.getElementById('youtube').style.display = type === 'youtube' ? 'block' : 'none';
 }
 
 function convertMetric() {
@@ -275,4 +276,20 @@ function convertBinaryToDecimal() {
     
     document.getElementById('resultLabelBinaryToDecimal').innerText = decimalResult;
     document.getElementById('resultCardBinaryToDecimal').style.display = 'block';
+}
+
+function downloadVideo() {
+    var videoUrl = document.getElementById('videoUrl').value;
+    // Check if the URL is a valid YouTube URL
+    if (videoUrl.includes('youtube.com/watch') || videoUrl.includes('youtu.be')) {
+      // Extract the YouTube video ID
+      var videoId = videoUrl.split('v=')[1];
+      if (!videoId) {
+        videoId = videoUrl.split('youtu.be/')[1];
+      }
+      // Redirect the user to the correct site for downloading the video
+      window.open('https://www.y2mate.com/download-youtube/' + videoId, '_blank');
+    } else {
+      alert('Please enter a valid YouTube video URL.');
+    }
 }
