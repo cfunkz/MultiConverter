@@ -120,7 +120,64 @@ function calcMetric(value, conversionType) {
         case 'hectares-acres':
             result = parseFloat(value) / 0.404686;
             return (value + " Hectares" + "\n=\n" + result.toFixed(2) + " Acres");
-            
+        case 'g-kg':
+            result = parseFloat(value) / 1000;
+            return (value + " Grams" + "\n=\n" + result.toFixed(2) + " Kilograms");
+        case 'mg-g':
+            result = parseFloat(value) / 1000;
+            return (value + " Milligrams" + "\n=\n" + result.toFixed(2) + " Grams");
+        case 'mg-kg':
+            result = parseFloat(value) / 1000000;
+            return (value + " Milligrams" + "\n=\n" + result.toFixed(2) + " Kilograms");
+        case 'kg-g':
+            result = parseFloat(value) * 1000;
+            return (value + " Kilograms" + "\n=\n" + result.toFixed(2) + " Grams");
+        case 'g-mg':
+            result = parseFloat(value) * 1000;
+            return (value + " Grams" + "\n=\n" + result.toFixed(2) + " Milligrams");
+        case 'kg-mg':
+            result = parseFloat(value) * 1000000;
+            return (value + " Kilograms" + "\n=\n" + result.toFixed(2) + " Milligrams");
+        case 'ml-l':
+            result = parseFloat(value) / 1000;
+            return (value + " Milliliters" + "\n=\n" + result.toFixed(2) + " Liters");
+        case 'cl-l':
+            result = parseFloat(value) / 10;
+            return (value + " Centiliters" + "\n=\n" + result.toFixed(2) + " Liters");
+        case 'kl-l':
+            result = parseFloat(value) * 1000;
+            return (value + " Kiloliters" + "\n=\n" + result.toFixed(2) + " Liters");
+        case 'kl-ml':
+            result = parseFloat(value) * 1000000;
+            return (value + " Kiloliters" + "\n=\n" + result.toFixed(2) + " Milliliters");
+        case 'l-ml':
+            result = parseFloat(value) * 1000;
+            return (value + " Liters" + "\n=\n" + result.toFixed(2) + " Milliliters");
+        case 'l-cl':
+            result = parseFloat(value) * 100;
+            return (value + " Liters" + "\n=\n" + result.toFixed(2) + " Centiliters");
+        case 'l-kl':
+            result = parseFloat(value) / 1000;
+            return (value + " Liters" + "\n=\n" + result.toFixed(2) + " Kiloliters");
+       case 'mm-cm':
+            result = parseFloat(value) / 10;
+            return (value + " Millimeters" + "\n=\n" + result.toFixed(2) + " Centimeters");
+        case 'cm-mm':
+            result = parseFloat(value) * 10;
+            return (value + " Centimeters" + "\n=\n" + result.toFixed(2) + " Millimeters");
+        case 'km-m':
+            result = parseFloat(value) * 1000;
+            return (value + " Kilometers" + "\n=\n" + result.toFixed(2) + " Meters");
+        case 'm-km':
+            result = parseFloat(value) / 1000;
+            return (value + " Meters" + "\n=\n" + result.toFixed(2) + " Kilometers");
+        case 'm-cm':
+            result = parseFloat(value) * 100; // 1 meter = 100 centimeters
+            return (value + " Meters" + "\n=\n" + result.toFixed(2) + " Centimeters");
+        case 'm-mm':
+            result = parseFloat(value) * 1000; // 1 meter = 1000 millimeters
+            return (value + " Meters" + "\n=\n" + result.toFixed(2) + " Millimeters");
+
         default:
             return 'Invalid conversion type';
     }
@@ -156,6 +213,9 @@ function calcImperial(value, conversionType) {
         case 'oz-mg':
             result = parseFloat(value) * 28349.5;
             return (value + " Ounces" + "\n=\n" + result.toFixed(2) + " Milligrams");
+        case 'oz-g':
+            result = parseFloat(value) * 28.3495;
+            return (value + " Ounces" + "\n=\n" + result.toFixed(2) + " Grams");
         case 'lb-g':
             result = parseFloat(value) * 453.592;
             return (value + " Pounds" + "\n=\n" + result.toFixed(2) + " Grams");
