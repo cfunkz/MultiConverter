@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Video Downloader</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/Web-Value-Converter">Converter</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"> <!-- JAVASCRIPT:VOID(0) TO HIDE # AS HREF -->
+            <a class="nav-link" href="javascript:void(0);" onclick="openConverter('metric')">Metric</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);" onclick="openConverter('imperial')">Imperial</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);" onclick="openConverter('currency')">Currency</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);" onclick="openConverter('decimal-to-binary')">Binary</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="youtube.html">Youtube Downloader</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h2 class="text-center mb-4">YouTube Video Downloader</h2>
+        <div class="input-group mb-3">
+          <input type="text" id="videoUrl" class="form-control" placeholder="Enter YouTube video URL">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button" onclick="downloadVideo()">Download</button>
+          </div>
+        </div>
+        <div class="text-center">
+          🎵 Powered by <a href="https://www.y2mate.com/">y2mate</a> 🎵
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
