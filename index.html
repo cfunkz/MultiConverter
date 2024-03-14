@@ -38,18 +38,24 @@
 
     <h3 class="mb-4 text-center">Select A Value To Convert</h3>
     <div class="row">
-      <div class="col-md-6 offset-md-3">
+      <div class="col">
         <select class="form-select mb-3" id="metric-selection" onchange="switchMetric()">
             <optgroup label="Area">
                 <option value="hectares-acres">Hectares to Acres</option>
                 <option value="m2-ft2">Square Meter (m2) to Square Feet (ft2)</option>
             </optgroup>
             <optgroup label="Length">
-                <option value="cm-in">Centimeters (CM) to Inches (in)</option>
                 <option value="km-mi">Kilometers (KM) to Miles (mi)</option>
+                <option value="km-m">Kilometers (KM) to Meters (M)</option>
                 <option value="m-ft">Meters (M) to Feet (ft)</option>
                 <option value="m-yd">Meters (M) to Yards (yd)</option>
+                <option value="m-km">Meters (M) to Kilometers (KM)</option>
+                <option value="m-cm">Meters (M) to Centimeters (CM)</option>
+                <option value="m-mm">Meters (M) to Millimeters (MM)</option>
+                <option value="cm-mm">Centimeters (CM) to Millimeters (MM)</option>
+                <option value="cm-in">Centimeters (CM) to Inches (in)</option>
                 <option value="mm-in">Millimeters (MM) to Inches (in)</option>
+                <option value="mm-cm">Millimeters (MM) to Centimeters (CM)</option>
             </optgroup>
             <optgroup label="Speed">
                 <option value="kph-mph">Kilometers Per Hour (KPH) to Miles Per Hour (MPH)</option>
@@ -59,19 +65,32 @@
                 <option value="c-f">Celsius (C) to Farenheit (F)</option>
             </optgroup>
             <optgroup label="Volume">
-                <option value="cl-fl">Centiliters (cl) to Fluid Ounces (fl oz)</option>
+                <option value="cl-fl">Centiliters (cL) to Fluid Ounces (fl oz.)</option>
                 <option value="kl-gal">Kiloliters (KL) to Gallons (gal)</option>
-                <option value="l-fl">Liters (L) to Fluid Ounces (fl oz)</option>
+                <option value="l-fl">Liters (L) to Fluid Ounces (fl oz.)</option>
                 <option value="l-gal">Liters (L) to Gallons (gal)</option>
-                <option value="ml-fl">Milliliters (mL) to Fluid Ounces (fl oz)</option>
+                <option value="ml-fl">Milliliters (mL) to Fluid Ounces (fl oz.)</option>
+                <option value="ml-l">Milliliters (mL) to Liters (L)</option>
+                <option value="cl-l">Centiliters (cl) to Liters (L)</option>
+                <option value="kl-l">Kiloliters (KL) to Liters (L)</option>
+                <option value="kl-ml">Kiloliters (KL) to Milliliters (mL)</option>
+                <option value="l-ml">Liter (L) to Milliliters (mL)</option>
+                <option value="l-cl">Liter (L) to Centiliters (cL)</option>
+                <option value="l-kl">Liter (L) to Kiloliters (KL)</option>
             </optgroup>
             <optgroup label="Weight">
-                <option value="g-oz">Grams (g) to Ounces (oz)</option>
-                <option value="kg-lb">Kilograms (kg) to Pounds (lbs)</option>
-                <option value="kg-st">Kilograms (kg) to Stone (st)</option>
-                <option value="mg-oz">Milligrams (mg) to Ounces (oz)</option>
-                <option value="ton-lb">Metric Tons (ton) to Pounds (lbs)</option>
-                <option value="ton-st">Metric Tons (ton) to Stone (st)</option>
+                <option value="g-oz">Grams (G) to Ounces (oz)</option>
+                <option value="kg-lb">Kilograms (KG) to Pounds (lbs)</option>
+                <option value="kg-st">Kilograms (KG) to Stone (st)</option>
+                <option value="mg-oz">Milligrams (MG) to Ounces (oz)</option>
+                <option value="ton-lb">Metric Tons (TON) to Pounds (lbs)</option>
+                <option value="ton-st">Metric Tons (TON) to Stone (st)</option>
+                <option value="g-kg">Grams (G) to Kilograms (KG)</option>
+                <option value="mg-g">Milligrams (MG) to Grams (G)</option>
+                <option value="mg-kg">Milligrams (MG) to Kilograms (KG)</option>
+                <option value="kg-g">Kilograms (KG) to Grams (G)</option>
+                <option value="g-mg">Grams (G) to Milligrams (MG)</option>
+                <option value="kg-mg">Kilograms (KG) to Milligrams (MG)</option>
             </optgroup>
         </select>
         
@@ -95,33 +114,33 @@
 
     <h3 class="mb-4 text-center">Select A Value To Convert</h3>
     <div class="row">
-      <div class="col-md-6 offset-md-3">
+      <div class="col">
         <select class="form-select mb-3" id="imperial-selection" onchange="switchImperial()">
             <optgroup label="Area">
                 <option value="ft2-m2">Square Feet (ft2) to Square Meter (m2)</option>
                 <option value="acres-hectares">Acres to Hectares</option>
             </optgroup>
             <optgroup label="Length">
-                <option value="in-mm">Inches (in) to Millimeters (mm)</option>
-                <option value="in-cm">Inches (in) to Centimeters (cm)</option>
-                <option value="ft-m">Feet (ft) to Meters (m)</option>
-                <option value="yd-m">Yards (yd) to Meters (m)</option>
-                <option value="mi-km">Miles (mi) to Kilometers (km)</option>
+                <option value="in-mm">Inches (in.) to Millimeters (MM)</option>
+                <option value="in-cm">Inches (in.) to Centimeters (CM)</option>
+                <option value="ft-m">Feet (ft.) to Meters (M)</option>
+                <option value="yd-m">Yards (yd) to Meters (M)</option>
+                <option value="mi-km">Miles (mi) to Kilometers (KM)</option>
             </optgroup>
             <optgroup label="Speed">
                 <option value="mph-kph">Miles Per Hour (MPH) to Kilometers Per Hour (KPH)</option>
             </optgroup>
             <optgroup label="Volume">
-                <option value="fl-ml">Fluid Ounces (fl oz) to Milliliters (mL)</option>
-                <option value="fl-l">Fluid Ounces (fl oz) to Liters (L)</option>
+                <option value="fl-ml">Fluid Ounces (fl oz.) to Milliliters (mL)</option>
+                <option value="fl-l">Fluid Ounces (fl oz.) to Liters (L)</option>
                 <option value="gal-l">Gallons (gal) to Liters (L)</option>
             </optgroup>
             <optgroup label="Weight">
-                <option value="oz-mg">Ounces (oz) to Milligrams (mg)</option>
-                <option value="oz-g">Ounces (oz) to Grams (g)</option>
-                <option value="lb-g">Pounds (lbs) to Grams (g)</option>
-                <option value="st-kg">Stone (st) to Kilograms (kg)</option>
-                <option value="st-ton">Stone (st) to Metric Tons</option>
+                <option value="oz-mg">Ounces (oz) to Milligrams (MG)</option>
+                <option value="oz-g">Ounces (oz) to Grams (G)</option>
+                <option value="lb-g">Pounds (lbs) to Grams (G)</option>
+                <option value="st-kg">Stone (st) to Kilograms (KG)</option>
+                <option value="st-ton">Stone (st) to Metric Tons (TON)</option>
             </optgroup>
             <optgroup label="Temperature">
                 <option value="f-c">Fahrenheit (F) to Celsius (C)</option>
@@ -129,7 +148,7 @@
         </select>        
 
         <input type="number" class="form-control mb-3" id="valueInputImperial" placeholder="Enter value" value="0">
-        <button class="btn btn-primary d-block mx-auto mb-3" onclick="convertImperial()">Convert</button>
+        <button class="btn btn-primary mx-auto mb-3" onclick="convertImperial()">Convert</button>
         <div class="card" id="resultCardImperial" style="display:none;">
             <div class="card-body bg-primary text-white text-center">
                 <h5 class="card-title">Result</h5>
@@ -147,7 +166,7 @@
   
     <h3 class="mb-4 text-center">Select Currencies</h3>
     <div class="row">
-      <div class="col-md-6 offset-md-3">
+      <div class="col">
         <select class="form-select mb-3" id="currency-from-selection">
             <option value="USD">USD (United States Dollar)</option>
             <option value="EUR">EUR (Euro)</option>
@@ -212,7 +231,7 @@
     </div>
     <h3 class="mb-4 text-center">Enter Decimal Number</h3>
     <div class="row">
-      <div class="col-md-6 offset-md-3">
+      <div class="col">
         <input type="number" class="form-control mb-3" id="decimalInput" placeholder="Enter decimal number">
         <button class="btn btn-danger d-block mx-auto mb-3" onclick="convertDecimalToBinary()">Convert</button>
         <div class="card" id="resultCardDecimalToBinary" style="display:none;">
@@ -234,7 +253,7 @@
     </div>
     <h3 class="mb-4 text-center">Enter Binary Number</h3>
     <div class="row">
-      <div class="col-md-6 offset-md-3">
+      <div class="col">
         <input type="number" class="form-control mb-3" id="binaryInput" placeholder="Enter binary number">
         <button class="btn btn-danger d-block mx-auto mb-3" onclick="convertBinaryToDecimal()">Convert</button>
         <div class="card" id="resultCardBinaryToDecimal" style="display:none;">
