@@ -38,6 +38,7 @@ function openConverter(type) {
     document.getElementById('decimal-to-binary').style.display = type === 'decimal-to-binary' ? 'block' : 'none';
     document.getElementById('binary-to-decimal').style.display = type === 'binary-to-decimal' ? 'block' : 'none';
     document.getElementById('youtube').style.display = type === 'youtube' ? 'block' : 'none';
+    document.getElementById('qr').style.display = type === 'qr' ? 'block' : 'none';
 }
 
 function convertMetric() {
@@ -292,4 +293,51 @@ function downloadVideo() {
     } else {
       alert('Please enter a valid YouTube video URL.');
     }
+}
+document.querySelector('.qr-container').addEventListener('click', function(event) {
+    if (event.target.classList.contains('generated-qr')) {
+      downloadQR(event.target);
+    }
+});
+
+function generateQR() {
+    var textInput = document.getElementById("textInput").value;
+    if (textInput.trim() !== "") {
+      var qrContainer = document.createElement("div");
+      qrContainer.classList.add("generated-qr");
+      document.querySelector(".qr-container").appendChild(qrContainer);
+
+      var qr = new QRCode(qrContainer, {
+        text: textInput,
+        width: 236, // Adjusted width to account for padding and border
+        height: 236, // Adjusted height to account for padding and border
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+
+      var qrText = document.createElement("p");
+      qrText.classList.add("qr-text");
+      qrText.textContent = textInput;
+      qrContainer.appendChild(qrText);
+    } else {
+      alert("Please enter text or a link to generate QR code.");
+    }
+}
+
+
+function downloadQR(qrContainer) {
+    var prefix = 'qr_'; // Prefix for the filename
+    var randomNum = Math.floor(Math.random() * 1000000); // Generate a random number
+    var fileName = prefix + randomNum + '.png'; // Concatenate the prefix and random number with '.png' extension
+
+    var canvas = qrContainer.querySelector("canvas");
+    var img = canvas.toDataURL("image/png");
+    
+    var link = document.createElement('a');
+    link.href = img;
+    link.download = fileName; // Set the filename to the random name
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
