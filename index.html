@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>cFunkz | Converter</title>
+  <title>Atlas | Web Converter</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -15,7 +15,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"> <!-- JAVASCRIPT VOID NOT TO USE # AS HREF-->
+          <li class="nav-item"> <!-- JAVASCRIPT:VOID(0) TO HIDE # AS HREF -->
             <a class="nav-link" href="javascript:void(0);" onclick="openConverter('metric')">Metric</a>
           </li>
           <li class="nav-item">
@@ -32,7 +32,7 @@
     </div>
   </nav>
 
-  <!-- METRIC -->
+  <!-- METRIC CONVERSION MENU -->
   <div class="container mt-5" id="metric">
     <h1 class="mb-4 text-center text-success">Metric to Imperial Converter</h1>
 
@@ -108,7 +108,7 @@
     </div>
   </div>
 
-  <!-- IMPERIAL -->
+  <!-- IMPERIAL CONVERSION MENU -->
   <div class="container mt-5" id="imperial" style="display:none;">
     <h1 class="mb-4 text-center text-primary">Imperial to Metric Converter</h1>
 
@@ -238,7 +238,14 @@
           <div class="card-body bg-danger text-white text-center">
             <h5 class="card-title">Binary Representation</h5>
             <hr>
+            <text>BINARY</text>
             <p class="card-text display-4" id="resultLabelDecimalToBinary"></p>
+            <hr>
+            <text>16 BIT</text>
+            <p class="card-text display-4" id="resultLabelDecimalToBinary16Bits"></p>
+            <hr>
+            <text>8 BIT</text>
+            <p class="card-text display-4" id="resultLabelDecimalToBinary8Bits"></p>
           </div>
         </div>
       </div>
