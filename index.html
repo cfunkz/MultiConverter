@@ -27,6 +27,9 @@
           <li class="nav-item">
             <a class="nav-link" href="javascript:void(0);" onclick="openConverter('decimal-to-binary')">Binary</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);" onclick="openConverter('youtube')">Youtube</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -156,6 +159,9 @@
                 <p class="card-text display-4" id="resultLabelImperial"></p>
             </div>
         </div>
+        <div>
+          <p>Exchange rates provided by <a href="https://www.exchangerate-api.com">Exchange Rate API</a></p>
+        </div>
       </div>
     </div>
   </div>
@@ -213,7 +219,7 @@
         <input type="number" class="form-control mb-3" id="valueInputCurrency" placeholder="Enter value" value="0">
         <button class="btn btn-warning d-block text-white mx-auto mb-3" onclick="convertCurrency()">Convert</button>
         <div class="card" id="resultCardCurrency" style="display:none;">
-          <div class="card-body bg-primary text-white text-center">
+          <div class="card-body bg-warning text-white text-center">
             <h5 class="card-title">Result</h5>
             <hr>
             <p class="card-text display-4" id="resultLabelCurrency"></p>
@@ -274,6 +280,25 @@
     </div>
   </div>
 
+  <!-- YOUTUBE -->
+  <div class="container mt-5" id="youtube" style="display:none;">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h2 class="text-center mb-4">YouTube Video Downloader</h2>
+        <div class="input-group mb-3">
+          <input type="text" id="videoUrl" class="form-control" placeholder="Enter YouTube video URL">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button" onclick="downloadVideo()">Download</button>
+          </div>
+        </div>
+        <div class="text-center">
+          🎵 Powered by <a href="https://www.y2mate.com/">y2mate</a> 🎵
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gif.js/dist/gif.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -281,6 +306,5 @@
 </body>
 <footer class="text-center mt-5">
     <p>Written By <strong>cFunkz</strong>!</p>
-    <p>Exchange rates provided by <a href="https://www.exchangerate-api.com">Exchange Rate API</a></p>
 </footer>
 </html>
