@@ -41,6 +41,7 @@ function openConverter(type) {
     document.getElementById('qr').style.display = type === 'qr' ? 'block' : 'none';
     document.getElementById('color-pal').style.display = type === 'color-pal' ? 'block' : 'none';
     document.getElementById('emojis').style.display = type === 'emojis' ? 'block' : 'none';
+    document.getElementById('password-gen').style.display = type === 'password-gen' ? 'block' : 'none';
 }
 
 function convertMetric() {
@@ -343,3 +344,36 @@ function downloadQR(qrContainer) {
     link.click();
     document.body.removeChild(link);
 }
+
+document.getElementById("generateButton").addEventListener("click", function() {
+    const length = document.getElementById("lengthInput").value;
+    const includeUppercase = document.getElementById("includeUppercase").checked;
+    const includeLowercase = document.getElementById("includeLowercase").checked;
+    const includeNumbers = document.getElementById("includeNumbers").checked;
+    const includeSymbols = document.getElementById("includeSymbols").checked;
+    const excludeAmbiguous = document.getElementById("excludeAmbiguous").checked;
+  
+    const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+    const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const numberChars = "0123456789";
+    const symbolChars = "!@#$%^&*()-_=+[]{}|;:,.<>?";
+  
+    let chars = "";
+    if (includeLowercase) chars += lowercaseChars;
+    if (includeUppercase) chars += uppercaseChars;
+    if (includeNumbers) chars += numberChars;
+    if (includeSymbols) chars += symbolChars;
+    if (excludeAmbiguous) chars = chars.replace(/[l1O0]/g, '');
+  
+    let password = "";
+    for (let i = 0; i < length; i++) {
+      password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+  
+    document.getElementById("passwordDisplay").textContent = password;
+});
+document.getElementById("lengthInput").addEventListener("input", function() {
+    if (parseInt(this.value) > 256) {
+      this.value = 256;
+    }
+  });
