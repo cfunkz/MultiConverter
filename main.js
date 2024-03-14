@@ -40,6 +40,7 @@ function openConverter(type) {
     document.getElementById('youtube').style.display = type === 'youtube' ? 'block' : 'none';
     document.getElementById('qr').style.display = type === 'qr' ? 'block' : 'none';
     document.getElementById('color-pal').style.display = type === 'color-pal' ? 'block' : 'none';
+    document.getElementById('emojis').style.display = type === 'emojis' ? 'block' : 'none';
 }
 
 function convertMetric() {
