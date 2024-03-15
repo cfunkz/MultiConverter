@@ -32,8 +32,8 @@
 .qr-text {
       text-align: center;
       margin-top: 5px;
-      width: 100%; /* Limiting width to prevent overflow */
-      overflow: hidden; /* Hide overflow text */
-      white-space: nowrap; /* Prevent wrapping */
+      width: 100%; 
+      overflow: hidden; 
+      white-space: nowrap; 
       text-overflow: ellipsis; 
 }
